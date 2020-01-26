@@ -3,7 +3,7 @@ npm install -g nodemon && npm install -s express npm install -g nodemon && npm i
 
 npm install postgresql
 
-##　postgresql 
+## postgresql 
 createdb node_datarecord_db -O root
 DB: node_datarecord_db
 user root
