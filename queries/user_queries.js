@@ -49,20 +49,22 @@ const createUser = (request, response) => {
 const updateUser = (request, response) => {
     const id = parseInt(request.params.id)
     const { username, email, password } = request.body;
+    debugger
 
     pool.query(
-        'UPDATE public."user" SET username = $1, email = $2, password = $3, WHERE id = $4',
+        'UPDATE public."user" SET username = $1, email = $2, password = $3 WHERE id = $4',
         [username, email, password, id],
         (error, resuts) => {
-            if(error) {
+            if (error) {
                 throw error
             }
+            //updateの結果をresponseで返す
             response.status(201).json(request.body);
         }
     )
 }
 
-//DELETE USER
+//delete USER
 
 const deleteUser = (request, response) => {
     const id = parseInt(request.params.id);

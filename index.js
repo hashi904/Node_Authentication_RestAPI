@@ -21,6 +21,7 @@ app.get('/', (request, response)=>{
 const user_db = require('./queries/user_queries');
 app.get('/users/', user_db.getUsers)
 app.post('/users/', user_db.createUser)
+app.put('/users/:id', user_db.updateUser)
 
 //message on console
 app.listen(port, () => {
