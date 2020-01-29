@@ -1,0 +1,44 @@
+DB アクセスコマンド
+psql -U postgres -d node_datarecord_db
+
+sequenceの作成
+CREATE SEQUENCE user_id_seq;
+
+
+ユーザーテーブルの作成
+CREATE TABLE "user" (
+    "id"          int DEFAULT nextval('user_id_seq') NOT NULL,
+    "username"      varchar(20) NOT NULL,
+    "email"         varchar(100) NOT NULL,
+    "password"      varchar(40) NOT NULL,
+    "created"       timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updated"       timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY ("id")
+);
+
+テスト用のユーザーデータをinsert
+INSERT INTO "user" (username, email, password) VALUES (
+    'test2',
+    'test@gmail.com2',
+    'test2'
+);
+
+from pg-admin
+
+CREATE TABLE public."user"
+(
+    id character varying(32) COLLATE pg_catalog."default" NOT NULL,
+    username character varying(20) COLLATE pg_catalog."default" NOT NULL,
+    email character varying(100) COLLATE pg_catalog."default" NOT NULL,
+    password character varying(40) COLLATE pg_catalog."default" NOT NULL,
+    created timestamp without time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    updated timestamp without time zone NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT user_pkey PRIMARY KEY (id)
+)
+WITH (
+    OIDS = FALSE
+)
+TABLESPACE pg_default;
+
+ALTER TABLE public."user"
+    OWNER to postgres;
